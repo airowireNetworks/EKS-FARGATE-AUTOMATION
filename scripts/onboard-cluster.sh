@@ -5,9 +5,6 @@ set -e
 echo "Creating Datadog Secret..."
 ./scripts/create-secret.sh
 
-echo "Applying ServiceAccount..."
-kubectl apply -f kubernetes/serviceaccount.yaml
-
 echo "Applying RBAC..."
 kubectl apply -f kubernetes/fargate-rbac.yaml
 
