@@ -3,13 +3,13 @@
 set -e
 
 DD_API_KEY=$(aws secretsmanager get-secret-value \
-  --region ap-south-2 \
+  --region us-east-1 \
   --secret-id datadog/api-key \
   --query SecretString \
   --output text)
 
 CLUSTER_AGENT_TOKEN=$(aws secretsmanager get-secret-value \
-  --region ap-south-2 \
+  --region us-east-1 \
   --secret-id datadog/cluster-agent-token \
   --query SecretString \
   --output text)
