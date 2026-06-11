@@ -1,0 +1,7 @@
+cluster_name: dd-fargate-lab
+region: us-east-1
+
+datadog_secret_name: datadog/api-key
+
+enable_logs: true
+enable_apm: true

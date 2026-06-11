@@ -1,0 +1,34 @@
+datadog:
+  apiKeyExistingSecret: datadog-secret
+  clusterName: dd-fargate-lab
+
+
+  logs:
+    enabled: true
+    containerCollectAll: true
+
+agents:
+  enabled: false
+
+clusterAgent:
+  enabled: true
+  tokenExistingSecret: datadog-secret
+
+  env:
+    - name: DD_ADMISSION_CONTROLLER_AGENT_SIDECAR_KUBELET_API_LOGGING_ENABLED
+      value: "true"
+
+  admissionController:
+    enabled: true
+
+    agentSidecarInjection:
+      enabled: true
+      provider: fargate
+
+      profiles:
+        - env:
+            - name: DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL
+              value: "true"
+
+            - name: DD_LOGS_CONFIG_BATCH_WAIT
+              value: "1"

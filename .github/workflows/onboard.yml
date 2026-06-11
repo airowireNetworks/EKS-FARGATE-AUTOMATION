@@ -1,0 +1,24 @@
+name: Datadog Onboarding
+
+on:
+  workflow_dispatch:
+
+jobs:
+  onboard:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure AWS
+      run: |
+        aws eks update-kubeconfig \
+        --region ${{ secrets.AWS_REGION }} \
+        --name ${{ secrets.EKS_CLUSTER }}
+
+    - name: Run Onboarding
+      env:
+        DD_API_KEY: ${{ secrets.DD_API_KEY }}
+      run: |
+        chmod +x scripts/*.sh
+        ./scripts/onboard-cluster.sh
